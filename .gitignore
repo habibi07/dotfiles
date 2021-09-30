@@ -4,6 +4,7 @@
 # but not these files..
 !.gitignore
 !.xprofile
+!README.md
 
 !.config/
 .config/*
