@@ -23,3 +23,8 @@
 !.config/zsh/
 .config/zsh/*
 !.config/zsh/.zshrc
+
+!.config/ranger/
+
+!.config/betterlockscreenrc
+
