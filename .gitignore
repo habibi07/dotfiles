@@ -17,3 +17,5 @@
 
 !.config/rofi/
 !.config/picom
+!.config/alacritty
+!.config/bin

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Zmiana domyślnych opcji dmenu wymaga przekompilowania więc taki
+# prosty wrapper powinien załatwić sprawę, wystarczy tylko przezwać
+# oryginalna binarke na plik o nazwie dmenurun
+dmenurun -i -h 30 -w 1720 -x 100 -y 35 -fn "FantasqueSansMono Nerd Font 12" "$@"

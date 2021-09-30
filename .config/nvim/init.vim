@@ -13,7 +13,8 @@ Plug 'majutsushi/tagbar'
 Plug 'takac/vim-hardtime'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
-
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -44,6 +45,7 @@ colorscheme tokyonight
 
 set hlsearch				" highlight search
 set relativenumber 			" add line numbers
+set number
 set tabstop=4
 set t_Co=256
 
@@ -232,7 +234,8 @@ nmap <F8> :TagbarToggle<CR>
 nmap <F2> :TagbarJumpPrev<CR>
 nmap <F3> :TagbarJumpNext<CR>
 
-autocmd VimEnter * nested :TagbarOpen
+" tagbar enable by default
+" autocmd VimEnter * nested :TagbarOpen
 
 
 " Path completion with custom source command
@@ -251,4 +254,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
-
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
+" Start NERDTree and leave the cursor in it.
+" autocmd VimEnter * NERDTree

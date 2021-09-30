@@ -1,0 +1,3 @@
+#!/bin/bash
+
+betterlockscreen --blur 1 -l blur --display 1 --span -- --greeter-text="Wpisz hasło aby zalogować" --lock-text="Blokowanie ekranu..." --lockfailed-text="Błąd blokowania" --wrong-text="Złe hasło \!\!\!" --verif-text="Weryfikowanie..." -b -f

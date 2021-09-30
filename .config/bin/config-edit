@@ -1,0 +1,45 @@
+#!/usr/bin/python
+"""
+    Prosty skrypt zawierający słownik wszystkich 
+    plików konfiguracyjnych, ułatwiający dostęp
+    oraz utrzymanie konfiguracji
+"""
+import os
+import sys
+from subprocess import call
+
+
+filename = '/home/habibi/test.txt'
+editor = os.environ['EDITOR']
+home = os.environ['HOME']
+config_dir = f"{home}/.config"
+
+configs = {
+    'zsh': f"{config_dir}/zsh/.zshrc",
+    'vim': f"{config_dir}/nvim/init.vim",
+    'alacritty': f"{config_dir}/alacritty/alacritty.yml",
+    'awesome': f"{config_dir}/awesome/rc.lua",
+    'picom': f"{config_dir}/picom/picom.conf",
+    'pipewire': f"{config_dir}/pipewire/pipewire.conf",
+    'ranger': f"{config_dir}/ranger/rc.conf"
+}
+
+
+def main(args):
+    if not len(args) == 1:
+        print("Błedna liczba argumentów")
+        print("Dostepne opcje: " + str(" ".join(sorted(configs.keys()))))
+        sys.exit(1)
+    
+    key = args[0]
+    if not key in configs.keys():
+        print(f"Nie znaleziono konfiguracji dla {key}")
+        sys.exit(1)
+
+    filename = configs.get(key)
+    out = call([editor, filename])
+    
+    # Tutaj opcjonalnie post update hook
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
