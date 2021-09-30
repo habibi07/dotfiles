@@ -11,7 +11,6 @@ xidlehook --timer 180 'lock_screen' '' &
 setxkbmap pl
 setxkbmap -option caps:swapescape
 
-# 150 czas po jakim zalacza sie repeat, mniejszy czas oznacza szybsze powtarzanie
 xset r rate 150 200
 
 picom &
