@@ -6,25 +6,22 @@
 !.xprofile
 !README.md
 
-!.config/
-.config/*
+!nvim/
+nvim/*
 
-!.config/nvim/
-.config/nvim/*
+!nvim/autoload/
+!nvim/init.vim
 
-!.config/nvim/autoload/
-!.config/nvim/init.vim
+!rofi/
+!picom
+!alacritty
+!bin
 
-!.config/rofi/
-!.config/picom
-!.config/alacritty
-!.config/bin
+!zsh/
+zsh/*
+!zsh/.zshrc
 
-!.config/zsh/
-.config/zsh/*
-!.config/zsh/.zshrc
+!ranger/
 
-!.config/ranger/
-
-!.config/betterlockscreenrc
+!betterlockscreenrc
 
