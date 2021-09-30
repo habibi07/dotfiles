@@ -1,0 +1,17 @@
+# Ignore everything
+/*
+
+# but not these files..
+!.gitignore
+!.xprofile
+
+!.config/
+.config/*
+
+!.config/nvim/
+.config/nvim/*
+
+!.config/nvim/init.vim
+
+!.config/rofi/
+!.config/picom

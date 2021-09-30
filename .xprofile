@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export EDITOR="vim"
+export ZDOTDIR="$HOME/.config/zsh"
+export PATH="$PATH:$HOME/.config/bin"
+export CM_LAUNCHER="rofi" # fzf, rofi, dmenu
+
+xidlehook --timer 180 'lock_screen' '' &
+
+# ustawienie domyślnego języka klawiatury
+setxkbmap pl
+setxkbmap -option caps:swapescape
+
+# 150 czas po jakim zalacza sie repeat, mniejszy czas oznacza szybsze powtarzanie
+xset r rate 150 200
+
+picom &
+
+pipewire &
+pipewire-pulse &
+pipewire-media-session &
+clipmenud &
