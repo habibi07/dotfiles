@@ -12,6 +12,7 @@
 !.config/nvim/
 .config/nvim/*
 
+!.config/nvim/autoload/
 !.config/nvim/init.vim
 
 !.config/rofi/
