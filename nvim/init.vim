@@ -15,6 +15,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -35,8 +36,13 @@ if (empty($TMUX))
   endif
 endif
 
-
+set nocompatible
+filetype plugin on
 syntax on
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 0
 
@@ -260,3 +266,14 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " nnoremap <C-f> :NERDTreeFind<CR>
 " Start NERDTree and leave the cursor in it.
 " autocmd VimEnter * NERDTree
+
+let g:vimwiki_folding = 'list'
+
+hi VimwikiHeader1 guifg=#FF0000
+hi VimwikiHeader2 guifg=#00FF00
+hi VimwikiHeader3 guifg=#0000FF
+hi VimwikiHeader4 guifg=#FF00FF
+hi VimwikiHeader5 guifg=#00FFFF
+hi VimwikiHeader6 guifg=#FFFF00
+
+source wiki.vim
