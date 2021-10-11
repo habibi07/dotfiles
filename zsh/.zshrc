@@ -19,6 +19,7 @@ alias awesomeconfig="$EDITOR $HOME/.config/awesome/rc.lua"
 alias vimconf="$EDITOR $HOME/.config/nvim/init.vim"
 alias cfg="config-edit"
 
+
 ### ZNT's installer added snippet ###
 fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
 autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
@@ -30,5 +31,10 @@ bindkey '^R' znt-history-widget
 setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 ### END ###
+
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 
 archey3

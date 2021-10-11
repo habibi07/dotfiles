@@ -13,12 +13,13 @@ font:
   bold_italic:
     family: FantasqueSansMono Nerd Font 
     style: Bold Italic
-  size: 10
+  size: 9
 
 #https://github.com/alacritty/alacritty/blob/master/alacritty.yml#L735
 key_bindings:
   - { key: V,        mods: Alt, action: Paste                        }
   - { key: C,        mods: Alt, action: Copy                         }
+    #- { key: F,        mods: Control, chars: "fzf\n"                     }
     #  - { key: Q,        mods: Alt, action: Redraw }
     #  - { key: W,        mods: Command, action: Quit                         }
     #  - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }

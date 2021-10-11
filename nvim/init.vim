@@ -16,6 +16,7 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -236,6 +237,12 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-ember']
+
+let g:LanguageClient_serverCommands = { 'vue': ['vls'] }
+
 nmap <F8> :TagbarToggle<CR>
 nmap <F2> :TagbarJumpPrev<CR>
 nmap <F3> :TagbarJumpNext<CR>
@@ -276,4 +283,39 @@ hi VimwikiHeader4 guifg=#FF00FF
 hi VimwikiHeader5 guifg=#00FFFF
 hi VimwikiHeader6 guifg=#FFFF00
 
-source wiki.vim
+source ~/.config/nvim/wiki.vim
+
+autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" PLUGIN: FZF
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>/ :BLines<CR>
+nnoremap <silent> <Leader>' :Marks<CR>
+nnoremap <silent> <Leader>g :Commits<CR>
+nnoremap <silent> <Leader>H :Helptags<CR>
+nnoremap <silent> <Leader>hh :History<CR>
+nnoremap <silent> <Leader>h: :History:<CR>
+nnoremap <silent> <Leader>h/ :History/<CR>
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
+
+" Emmet 
+let g:user_emmet_mode='a' 
+let g:user_emmet_leader_key='<C-Z>'
+
+" coc prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
