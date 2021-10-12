@@ -20,6 +20,8 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
+nnoremap <SPACE> <Nop>
+let mapleader = " " 
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -53,7 +55,6 @@ colorscheme tokyonight
 set hlsearch				" highlight search
 set relativenumber 			" add line numbers
 set number
-set tabstop=4
 set t_Co=256
 
 set clipboard=unnamedplus
@@ -239,7 +240,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-html', 'coc-ember']
+let g:coc_global_extensions = ['coc-json', 'coc-html', 'coc-ember']
 
 let g:LanguageClient_serverCommands = { 'vue': ['vls'] }
 
@@ -300,7 +301,7 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 
 " PLUGIN: FZF
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <A-f> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
@@ -319,3 +320,23 @@ let g:user_emmet_leader_key='<C-Z>'
 
 " coc prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Vim Tabs
+nnoremap <A-tab>   :tabnext<CR>
+nnoremap <A-n> :tabnew<CR>
+nnoremap <A-q> :tabclose<CR>
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
+nnoremap <A-8> 8gt
+nnoremap <A-9> 9gt
+nnoremap <A-0> 10gt
+
+" Save map
+noremap <Leader>s :update<CR>
+noremap <Leader>q :q<CR>
+noremap <Leader>cc :tabedit $MYVIMRC<CR>

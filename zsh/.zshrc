@@ -11,6 +11,8 @@ ZSH_THEME="steeef"
 
 plugins=(git archlinux colored-man-pages common-aliases docker docker-compose vagrant vagrant-prompt virtualenv zsh-interactive-cd zsh-navigation-tools zsh-autosuggestions)
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
+
 source $ZSH/oh-my-zsh.sh
 
 ### Aliasy 
@@ -34,7 +36,9 @@ zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border --bind=alt-j:up,alt-k:down'
 fi
+
+bindkey '^ ' autosuggest-accept
 
 archey3
