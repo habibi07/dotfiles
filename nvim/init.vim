@@ -345,4 +345,4 @@ noremap <Leader>q :q<CR>
 noremap <Leader>cc :tabedit $MYVIMRC<CR>
 
 
-" highlight Search guibg=guibg guifg=guifg gui=italic,underline,bold
+highlight Search guibg=guibg guifg=guifg gui=italic,underline,bold
