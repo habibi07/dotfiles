@@ -17,6 +17,8 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/emmet-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'https://github.com/dracula/vim'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
@@ -49,8 +51,9 @@ set expandtab
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 0
 
-colorscheme tokyonight
-"colorscheme onedark
+" colorscheme tokyonight
+" colorscheme onedark
+colorscheme dracula
 
 set hlsearch				" highlight search
 set relativenumber 			" add line numbers
@@ -340,3 +343,6 @@ nnoremap <A-0> 10gt
 noremap <Leader>s :update<CR>
 noremap <Leader>q :q<CR>
 noremap <Leader>cc :tabedit $MYVIMRC<CR>
+
+
+" highlight Search guibg=guibg guifg=guifg gui=italic,underline,bold
