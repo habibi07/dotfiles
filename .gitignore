@@ -26,3 +26,4 @@ zsh/*
 !betterlockscreenrc
 
 !sxiv/
+!dunst/
