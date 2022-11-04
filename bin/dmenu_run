@@ -3,4 +3,5 @@
 # Zmiana domyślnych opcji dmenu wymaga przekompilowania więc taki
 # prosty wrapper powinien załatwić sprawę, wystarczy tylko przezwać
 # oryginalna binarke na plik o nazwie dmenurun
-dmenurun -i -h 30 -w 1720 -x 100 -y 35 -fn "FantasqueSansMono Nerd Font 12" "$@"
+# dmenurun -i -h 30 -w 1720 -x 100 -y 35 -fn "FantasqueSansMono Nerd Font 12" "$@"
+dmenurun -i -h 70 -w 400 -x 750 -y 300 -fn "FantasqueSansMono Nerd Font:style=Normal:pixelsize=20" -l 10 -dim .6

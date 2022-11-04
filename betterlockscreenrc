@@ -35,4 +35,4 @@ wrongcolor=d23c3dff
 modifcolor=d23c3dff
 bgcolor=000000ff
 
-; betterlockscreen --blur 1 -l blur --display 1 --span -- --greeter-text="Wpisz hasło aby zalogować" --lock-text="Blokowanie ekranu..." --lockfailed-text="Błąd blokowania" --wrong-text="Złe hasło \!\!\!" --verif-text="Weryfikowanie..." -b -f
+# betterlockscreen --blur 1 -l blur --display 1 --span -- --greeter-text="Wpisz hasło aby zalogować" --lock-text="Blokowanie ekranu..." --lockfailed-text="Błąd blokowania" --wrong-text="Złe hasło \!\!\!" --verif-text="Weryfikowanie..." -b -f
