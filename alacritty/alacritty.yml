@@ -1,8 +1,8 @@
 font:
   normal:
-    #family: FantasqueSansMono Nerd Font
+    family: FantasqueSansMono Nerd Font
     #family: VictorMono Nerd Font Mono
-    family: VictorMono Nerd Font
+    #family: VictorMono Nerd Font
     style: Medium 
 
   bold:
