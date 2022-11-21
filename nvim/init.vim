@@ -38,6 +38,8 @@ set laststatus=2
 set number
 set relativenumber
 "set numberwidth=5 " line number column width
+"set foldmethod=expr
+"set foldexpr=nvim_treesitter#foldexpr()
 
 "colorscheme Atelier_ForestDark
 "colorscheme space-vim-dark
@@ -294,7 +296,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "python", "javascript", "typescript" },
+  ensure_installed = { "c", "lua", "python", "javascript", "typescript", "vim", "css", "dockerfile", "go", "html", "java", "json", "markdown", "regex", "sql", "toml", "tsx", "vue", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
