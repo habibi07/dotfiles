@@ -1,8 +1,22 @@
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomletion
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " displays color boxes 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'flazz/vim-colorschemes' " color schemes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'tpope/vim-fugitive' " Git integration plugin
+"Plug 'junegunn/fzf'
+"Plug 'junegunn/fzf.vim'
+"Plug 'nvim-lua/plenary.nvim'
+Plug 'folke/which-key.nvim'
+Plug 'nvim-treesitter/nvim-treesitter' " for telescope 
 call plug#end()
-" ------------------------------------------------------------------------------------------------------------ General
+" --------------------------------------------------- General
+source ~/.config/nvim/setcolors.vim
+
 filetype plugin indent on
 syntax enable
 
@@ -23,14 +37,33 @@ set laststatus=2
 
 set number
 set relativenumber
+"set numberwidth=5 " line number column width
+
+"colorscheme Atelier_ForestDark
+"colorscheme space-vim-dark
+"colorscheme Atelier_CaveDark
+"colorscheme blackboard
+"colorscheme cabin
+colorscheme duotone-darkspace
+let g:python3_host_prog = "python3.10"
+
+"colorscheme purify
+
+"hi LineNr         ctermfg=DarkMagenta guifg=#2b506e guibg=#000000
 
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 let g:mapleader = " "
 
-" Plug  hexokinase
+" --------------------------------------------------- Plug vim-exokinase
 let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'hsl', 'hsla', 'colour_names' ]
+
+" --------------------------------------------------- Plug coc
+
+" May need for vim (not neovim) since coc.nvim calculate byte offset by count
+" utf-8 byte sequence.
+set encoding=utf-8
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -181,3 +214,124 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" --------------------------------------------------- Plug Airline
+let g:airline_theme='base16_material_palenight'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 1
+
+let g:airline_powerline_fonts = 1
+let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'S',
+      \ ''     : 'S',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'V',
+      \ ''     : 'V',
+      \ }
+
+let g:airline_stl_path_style = 'short'
+let g:airline_section_c_only_filename = 0
+
+let g:airline_skip_empty_sections = 0
+let g:airline_focuslost_inactive = 1
+" let g:airline_statusline_ontop = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#whitespace#enabled = 1
+
+" let g:airline_exclude_preview = 1
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+
+let g:airline#extensions#whitespace#trailing_format = 'trailing - %s'
+let g:airline#extensions#whitespace#mixed_indent_format =
+   \ 'mixed-indent - %s'
+let g:airline#extensions#whitespace#long_format = 'long - %s'
+let g:airline#extensions#whitespace#mixed_indent_file_format =
+   \ 'mix-indent-file - %s'
+let g:airline#extensions#whitespace#conflicts_format = 'conflicts - %s'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.linenr = '☰ l:'
+let g:airline_symbols.colnr = ' c:'
+let g:airline_symbols.maxlinenr = ''
+
+let g:airline_section_c = '%t'
+let g:airline_section_z = airline#section#create(['linenr', 'colnr', 'maxlinenr', ' %p%%'])
+" let g:airline_section_y = airline#section#create_right([ 'fileformat' ]) 
+" let g:airline_section_y = airline#section#create_right([ 'fencbomffmt' ]) 
+
+let g:airline#extensions#virtualenv#enabled = 1
+
+
+
+" --------------------------------------------------- Plug Telescope
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "lua", "python", "javascript", "typescript" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { "c", "rust" },
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
