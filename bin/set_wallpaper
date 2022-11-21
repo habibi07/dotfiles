@@ -5,7 +5,9 @@ bg_file=/home/habibi/.config/bg_file
 if [ -z "$1" ]
 then
     file=`cat $bg_file`
-    feh --no-fehbg --bg-fill "$backgrounds_dir/$file"
+    fpath="$backgrounds_dir/$file"
+    feh --no-fehbg --bg-fill $fpath
+    wal -i $fpath
 else
     # sed "s/^image=.*/image=$1/" -i set_wallpaper
     echo "$1" > $bg_file
