@@ -13,6 +13,7 @@ Plug 'tpope/vim-fugitive' " Git integration plugin
 "Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' " for telescope 
+Plug 'junegunn/goyo.vim' " toggles focus mode
 call plug#end()
 " --------------------------------------------------- General
 source ~/.config/nvim/setcolors.vim
@@ -37,6 +38,7 @@ set laststatus=2
 
 set number
 set relativenumber
+
 "set numberwidth=5 " line number column width
 "set foldmethod=expr
 "set foldexpr=nvim_treesitter#foldexpr()
@@ -47,7 +49,7 @@ set relativenumber
 "colorscheme blackboard
 "colorscheme cabin
 colorscheme duotone-darkspace
-let g:python3_host_prog = "python3.10"
+"let g:python3_host_prog = "python3.10"
 
 "colorscheme purify
 
@@ -55,7 +57,22 @@ let g:python3_host_prog = "python3.10"
 
 nnoremap <SPACE> <Nop>
 let mapleader = " "
+let g:maplocalleader = ','
 let g:mapleader = " "
+
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+nmap <silent> <A-l> :wincmd l<CR>
 
 " --------------------------------------------------- Plug vim-exokinase
 let g:Hexokinase_highlighters = [ 'backgroundfull' ]
@@ -217,6 +234,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
 " --------------------------------------------------- Plug Airline
 let g:airline_theme='base16_material_palenight'
 
@@ -293,6 +312,10 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" --------------------------------------------------- Plug WhichKey
+nnoremap <silent> <leader>      :<c-u>WhichKey <Space><CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ,<CR>
+
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
@@ -336,4 +359,5 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
 EOF
