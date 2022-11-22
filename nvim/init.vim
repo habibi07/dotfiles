@@ -10,16 +10,18 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'tpope/vim-fugitive' " Git integration plugin
 "Plug 'junegunn/fzf'
 "Plug 'junegunn/fzf.vim'
-"Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' " for telescope 
 Plug 'junegunn/goyo.vim' " toggles focus mode
+Plug 'vimwiki/vimwiki'
 call plug#end()
 " --------------------------------------------------- General
 source ~/.config/nvim/setcolors.vim
 
 filetype plugin indent on
 syntax enable
+set nocompatible
 
 set termguicolors
 set keywordprg=":help"
@@ -73,6 +75,8 @@ nmap <silent> <A-k> :wincmd k<CR>
 nmap <silent> <A-j> :wincmd j<CR>
 nmap <silent> <A-h> :wincmd h<CR>
 nmap <silent> <A-l> :wincmd l<CR>
+
+let g:which_key_map =  {}
 
 " --------------------------------------------------- Plug vim-exokinase
 let g:Hexokinase_highlighters = [ 'backgroundfull' ]
@@ -153,7 +157,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -188,14 +192,14 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+"if has('nvim-0.4.0') || has('patch-8.2.0750')
+"  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+"  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+"  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
@@ -218,7 +222,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -304,18 +308,34 @@ let g:airline_section_z = airline#section#create(['linenr', 'colnr', 'maxlinenr'
 let g:airline#extensions#virtualenv#enabled = 1
 
 
-
+" --------------------------------------------------- Pug VimWiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 " --------------------------------------------------- Plug Telescope
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"nnoremap <leader>ff <cmd>Telescope find_files<cr>
+"nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+"nnoremap <leader>fb <cmd>Telescope buffers<cr>
+"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " --------------------------------------------------- Plug WhichKey
-nnoremap <silent> <leader>      :<c-u>WhichKey <Space><CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ,<CR>
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+"let g:which_key_map.f = { 'name' : '+file' }
+"nnoremap <silent> <leader>fs :update<CR>
+"let g:which_key_map.f.s = 'save-file'
+"nnoremap <silent> <leader>fd :tabedit $MYVIMRC<CR>
+"let g:which_key_map.f.d = 'open-vimrc'
+"nnoremap <silent> <leader>oq  :copen<CR>
+"nnoremap <silent> <leader>ol  :lopen<CR>
+"let g:which_key_map.o = {
+"      \ 'name' : '+open',
+"      \ 'q' : 'open-quickfix'    ,
+"      \ 'l' : 'open-locationlist',
+"      \ }
+"
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
@@ -360,4 +380,37 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+local wk = require("which-key")
+wk.register({
+  ["<leader>f"] = {
+    name = "Pliki i inne",
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    g = { "<cmd>Telescope live_grep<cr>", "Live GREP" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
+    c = { "<cmd>tabedit $MYVIMRC<CR>", "Open vim config" },
+    s = { "<cmd>update<CR>", "Save file" }
+  },
+  ["<leader>g"] = {
+    name = "Git",
+    l = { "<cmd>Telescope git_commits<CR>", "View git commits" }
+  }
+})
+require('telescope').setup{
+ defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    }
+  }
+}
+
 EOF
+
+"autocmd User TelescopePreviewerLoaded setlocal bat
