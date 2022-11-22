@@ -71,6 +71,10 @@ complete -F __start_kubectl k
 
 export PATH="$PATH:$HOME/.local/bin:`yarn global bin`"
 
+if [ -d "$HOME/.config/bookmarks" ]; then
+    export CDPATH=".:$HOME/.config/bookmarks:/"
+    alias goto="cd -P"
+fi
 
 archey3
 colorscript -e 12
