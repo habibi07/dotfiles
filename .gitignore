@@ -18,6 +18,7 @@ nvim/*
 !alacritty
 !bin/
 bin/*
+!bin/powermenu
 
 !zsh/
 zsh/*
