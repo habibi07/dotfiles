@@ -75,6 +75,7 @@ if [ -d "$HOME/.config/bookmarks" ]; then
     export CDPATH=".:$HOME/.config/bookmarks:/"
     alias goto="cd -P"
 fi
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 archey3
 colorscript -e 12
