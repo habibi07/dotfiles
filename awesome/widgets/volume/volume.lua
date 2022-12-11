@@ -36,17 +36,13 @@ local function get_widget(widget_args)
     },
     {
       {
-        {
-          id = 'txt',
-          font = font,
-          widget = wibox.widget.textbox
-        },
-        valign = 'center',
-        halign = 'center',
-        layout = wibox.container.place
+        id = 'txt',
+        font = font,
+        widget = wibox.widget.textbox
       },
-      color = 'red',
-			widget = wibox.container.margin
+      top = '12',
+      left = 5,
+      widget = wibox.container.margin,
     },
     layout = wibox.layout.fixed.horizontal,
     get_icon = function (self, state)
