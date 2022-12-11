@@ -9,8 +9,8 @@ local volume = {}
 
 local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/widgets/icons/'
 
-local GET_VOLUME_CMD = 'pamixer --get-volume'
-local CHANGE_VOLUME_CMD = 'pactl set-sink-volume @DEFAULT_SINK@ '
+local function GET_VOLUME_CMD() return 'pamixer --get-volume' end
+local function CHANGE_VOLUME_CMD(step) return 'pactl set-sink-volume @DEFAULT_SINK@ ' .. step end
 
 local ICON_MAP = {
   muted =  'audio-volume-muted-symbolic',
@@ -18,6 +18,19 @@ local ICON_MAP = {
   medium = 'audio-volume-medium-symbolic',
   high = 'audio-volume-high-symbolic'
 }
+
+
+--local popup = awful.popup{
+--    bg = beautiful.bg_normal,
+--    ontop = true,
+--    visible = false,
+--    shape = gears.shape.rounded_rect,
+--    border_width = 1,
+--    border_color = beautiful.bg_focus,
+--    maximum_width = 400,
+--    offset = { y = 10, x = -300 },
+--    widget = {}
+--}
 
 local function get_widget(widget_args)
   local args = widget_args or {}
@@ -35,14 +48,9 @@ local function get_widget(widget_args)
       layout = wibox.container.place
     },
     {
-      {
-        id = 'txt',
-        font = font,
-        widget = wibox.widget.textbox
-      },
-      top = '12',
-      left = 5,
-      widget = wibox.container.margin,
+      id = 'txt',
+      font = font,
+      widget = wibox.widget.textbox
     },
     layout = wibox.layout.fixed.horizontal,
     get_icon = function (self, state)
@@ -86,20 +94,22 @@ local function worker(user_args)
   end
 
   local function update_callback(stdout)
-    spawn.easy_async(GET_VOLUME_CMD, function (out)
+    spawn.easy_async(GET_VOLUME_CMD(), function (out)
       update_graphic(volume.widget, out)
     end)
   end
 
   function volume:inc(s)
     local volume_step = s or step
-    local cmd = CHANGE_VOLUME_CMD .. '+' .. volume_step .. '%'
+    local step_value = '+' .. volume_step .. '%'
+    local cmd = CHANGE_VOLUME_CMD(step_value)
     spawn.easy_async(cmd, update_callback)
   end
 
   function volume:dec(s)
     local volume_step = s or step
-    local cmd = CHANGE_VOLUME_CMD .. '-' .. volume_step .. '%'
+    local step_value = '-' .. volume_step .. '%'
+    local cmd = CHANGE_VOLUME_CMD(step_value)
     spawn.easy_async(cmd, update_callback)
   end
 
@@ -113,7 +123,7 @@ local function worker(user_args)
   )
 
   --volume.widget:set_volume_level('12')
-  watch(GET_VOLUME_CMD, refresh_rate, update_graphic, volume.widget)
+  watch(GET_VOLUME_CMD(), refresh_rate, update_graphic, volume.widget)
 
   return volume.widget
 end
