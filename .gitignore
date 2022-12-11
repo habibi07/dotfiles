@@ -16,7 +16,8 @@ nvim/*
 !rofi/
 !picom
 !alacritty
-!bin
+!bin/
+bin/*
 
 !zsh/
 zsh/*
