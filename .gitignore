@@ -11,6 +11,7 @@ nvim/*
 
 !nvim/autoload/
 !nvim/init.vim
+!nvim/config/
 
 !rofi/
 !picom
