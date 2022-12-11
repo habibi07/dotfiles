@@ -22,6 +22,10 @@ set laststatus=2
 set number
 set relativenumber
 
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 "set numberwidth=5 " line number column width
 "set foldmethod=expr
 "set foldexpr=nvim_treesitter#foldexpr()
