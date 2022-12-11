@@ -31,3 +31,16 @@ zsh/*
 !dunst/
 !zathura/
 !files/
+
+!awesome/
+awesome/*
+
+!awesome/rc.lua
+!awesome/translations.lua
+!awesome/widgets
+
+!awesome/themes/
+awesome/themes/*
+!awesome/themes/habibi/
+awesome/themes/habibi/*
+!awesome/themes/habibi/*
