@@ -19,7 +19,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-plugins=(git archlinux colored-man-pages common-aliases docker docker-compose vagrant vagrant-prompt virtualenv zsh-interactive-cd zsh-navigation-tools zsh-autosuggestions fzf)
+plugins=(git archlinux colored-man-pages common-aliases docker docker-compose vagrant vagrant-prompt virtualenv zsh-interactive-cd zsh-navigation-tools zsh-autosuggestions fzf autojump)
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
 
@@ -38,6 +38,8 @@ autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-
 autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
 alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
 alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
+alias cat=bat
+
 zle -N znt-history-widget
 bindkey '^R' znt-history-widget
 setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
@@ -71,10 +73,6 @@ complete -F __start_kubectl k
 
 export PATH="$PATH:$HOME/.local/bin:`yarn global bin`"
 
-if [ -d "$HOME/.config/bookmarks" ]; then
-    export CDPATH=".:$HOME/.config/bookmarks:/"
-    alias goto="cd -P"
-fi
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 archey3
