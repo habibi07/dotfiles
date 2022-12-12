@@ -15,6 +15,7 @@ Plug 'folke/which-key.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' " for telescope 
 Plug 'junegunn/goyo.vim' " toggles focus mode
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 
