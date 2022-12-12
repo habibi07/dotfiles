@@ -14,10 +14,16 @@ local cairo = require("lgi").cairo
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-local volume_widget = require('widgets.volume.volume')
---local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
--- local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
+
+local volume_widget = require('widgets.volume.volume')
+local ram_widget = require("widgets.ram.ram")
+--local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+--local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+
+-- calendar, docekr, fs, ram, cpu, logout, mpd, todo, spotify, transmission, translate
+--local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+--local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -393,9 +399,12 @@ awful.screen.connect_for_each_screen(function(s)
         	{ -- Right widgets
         	    layout = wibox.layout.fixed.horizontal,
 		    separator,
+        ram_widget(),
 		    volume_widget{
           widget_type = 'arc'
         },
+        -- ram_widget(),
+        -- cpu_widget(),
 		    --battery_widget(),
 		    separator,
         	    -- keyboardlayout,
