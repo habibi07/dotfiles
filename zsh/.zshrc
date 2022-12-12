@@ -3,6 +3,8 @@ export VAGRANT_HOME="$HOME/data/vagrant.d"
 export FONT="FantasqueSansMono Nerd Font"
 export BROWSER="brave"
 
+source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 # Autocomplete dla nvm - node version manager
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -77,3 +79,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 archey3
 colorscript -e 12
+
+
+zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:*' fzf-completion yes
