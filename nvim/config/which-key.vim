@@ -5,21 +5,37 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 lua << EOF
   local wk = require("which-key")
-  wk.register({
-    ["<leader>f"] = {
+  
+  local visual_keymaps = {
+    p = { "<cmd>:w !python<cr>", "Run selected in python" },
+  }
+
+  local normal_keymaps = {
+    f = {
       name = "Pliki i inne",
-      f = { "<cmd>Telescope find_files<cr>", "Find File" },
-      g = { "<cmd>Telescope live_grep<cr>", "Live GREP" },
+      f = { "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", "Find File" },
+      g = { "<cmd>Telescope live_grep hidden=true<cr>", "Live GREP" },
       r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
       b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
       c = { "<cmd>tabedit $MYVIMRC<CR>", "Open vim config" },
       s = { "<cmd>update<CR>", "Save file" }
     },
-    ["<leader>g"] = {
+    g = {
       name = "Git",
       l = { "<cmd>Telescope git_commits<CR>", "View git commits" }
     }
+  }
+
+  wk.register(normal_keymaps, {
+    prefix = '<leader>',
+    mode = 'n'
   })
+
+  wk.register(visual_keymaps, {
+    prefix = '<leader>',
+    mode = 'v'
+  })
+
   require('telescope').setup{
    defaults = {
       -- Default configuration for telescope goes here:
@@ -31,7 +47,12 @@ lua << EOF
           -- e.g. git_{create, delete, ...}_branch for the git_branches picker
           ["<C-h>"] = "which_key"
         }
-      }
+      },
+      key_labels = {
+        ["<space>"] = "SPC",
+        ["<cr>"] = "RET",
+        ["<tab>"] = "TAB",
+      },
     }
   }
   

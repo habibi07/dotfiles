@@ -42,6 +42,14 @@ colorscheme duotone-darkspace
 
 "hi LineNr         ctermfg=DarkMagenta guifg=#2b506e guibg=#000000
 
+
+" setup required by coc plugin to work properly
+set nobackup
+set nowritebackup
+set updatetime=300
+set signcolumn=yes
+
+" change default leader key to space
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 let g:maplocalleader = ','
@@ -61,8 +69,3 @@ nmap <silent> <A-j> :wincmd j<CR>
 nmap <silent> <A-h> :wincmd h<CR>
 nmap <silent> <A-l> :wincmd l<CR>
 
-" setup required by coc plugin to work properly
-set nobackup
-set nowritebackup
-set updatetime=300
-set signcolumn=yes
