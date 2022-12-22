@@ -69,6 +69,7 @@ tag_list = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 modkey = "Mod4"
 inc_factor = 0.05
 useless_gap = 2
+local rofi_cmd = 'rofi -show ssh'
 
 beautiful.init("/home/" .. user .. "/.config/awesome/themes/" .. theme .. "/theme.lua")
 
@@ -93,6 +94,7 @@ local focus_prev_screen = function () awful.screen.focus_relative(-1) end
 
 local show_client_list = function() awful.menu.client_list({ theme = { width = 500, height = 50 } }) end
 local show_terminal = function () awful.spawn(terminal) end
+local show_rofi = function () awful.spawn(rofi_cmd) end
 local incmwfactor = function () awful.tag.incmwfact(inc_factor) end
 local decmwfactor = function () awful.tag.incmwfact(-inc_factor) end
 local inc_masters = function () awful.tag.incnmaster( 1, nil, true) end
@@ -434,8 +436,10 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
 -- Manager key bindings
-  awful.key({ modkey, }, "s", hotkeys_popup.show_help,
+  awful.key({ modkey, "Shift"}, "s", hotkeys_popup.show_help,
     {description=t.show_help, group = t.manager}),
+  awful.key({ modkey, }, "s", show_rofi,
+    {description="Run rofi ssh", group = t.manager}),
   awful.key({ modkey, }, "h", function () mainmenu:show() end,
     {description = t.show_menu, group = t.manager }),
 

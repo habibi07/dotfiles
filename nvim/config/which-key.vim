@@ -7,18 +7,20 @@ lua << EOF
   local wk = require("which-key")
   
   local visual_keymaps = {
-    p = { "<cmd>:w !python<cr>", "Run selected in python" },
+    p = { ":'<,'>w !python<cr>", "Run selected in python" },
   }
 
   local normal_keymaps = {
+    p = { "<cmd>:w !python<cr>", "Run selected in python" },
     f = {
       name = "Pliki i inne",
       f = { "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", "Find File" },
-      g = { "<cmd>Telescope live_grep hidden=true<cr>", "Live GREP" },
+      g = { "<cmd>Telescope live_grep hidden=true no_ignore=true<cr>", "Live GREP" },
       r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
       b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
       c = { "<cmd>tabedit $MYVIMRC<CR>", "Open vim config" },
-      s = { "<cmd>update<CR>", "Save file" }
+      s = { "<cmd>update<CR>", "Save file" },
+      q = { ":q!<CR>", "Quit without save" },
     },
     g = {
       name = "Git",
