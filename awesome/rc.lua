@@ -18,6 +18,7 @@ require("awful.hotkeys_popup.keys")
 
 local volume_widget = require('widgets.volume.volume')
 local ram_widget = require("widgets.ram.ram")
+local powerbutton = require("widgets.powerbutton.powerbutton")
 --local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 --local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
@@ -412,11 +413,12 @@ awful.screen.connect_for_each_screen(function(s)
         	    -- keyboardlayout,
         	    wibox.widget.systray(),
         	    textclock,
-		    {
-			    s.layoutbox,
-			    margins = 10,
-			    widget = wibox.container.margin
-		    },
+		          {
+			          s.layoutbox,
+			          margins = 10,
+			          widget = wibox.container.margin
+		          },
+              powerbutton{ icon = "/usr/share/icons/Paper/32x32/actions/xfce-system-exit.png" }
         	},
 	    },
 	    margins = 0,
