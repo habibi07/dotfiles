@@ -2,6 +2,12 @@ export ZSH="/home/habibi/.config/.oh-my-zsh"
 export VAGRANT_HOME="$HOME/data/vagrant.d" 
 export FONT="FantasqueSansMono Nerd Font"
 export BROWSER="brave"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
+export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
@@ -13,7 +19,10 @@ export NVM_DIR="$HOME/.config/nvm"
 ZSH_THEME="agnoster"
 #ZSH_THEME="steeef"
 
-# disable history duplicates
+# history setup
+export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -84,3 +93,4 @@ zstyle ':autocomplete:*' min-input 1
 zstyle ':autocomplete:*' fzf-completion yes
 
 bindkey -s '^o' 'ranger .^M'
+bindkey '^g' clear-screen
