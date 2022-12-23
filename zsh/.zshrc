@@ -80,6 +80,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 archey3
 colorscript -e 12
 
-
 zstyle ':autocomplete:*' min-input 1
 zstyle ':autocomplete:*' fzf-completion yes
+
+bindkey -s '^o' 'ranger .^M'
