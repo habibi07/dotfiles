@@ -1,6 +1,9 @@
 filetype plugin indent on
-syntax enable
+"syntax enable
+"set nocompatible
 set nocompatible
+"filetype plugin on
+syntax on
 
 set encoding=utf-8
 
@@ -25,6 +28,7 @@ set relativenumber
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set clipboard=unnamedplus
 
 "set numberwidth=5 " line number column width
 "set foldmethod=expr

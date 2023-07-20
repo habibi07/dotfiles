@@ -9,8 +9,8 @@ export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
+#source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+PROMPT='%(!.%{%F{yellow}%}.)$USER @ %{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 # Autocomplete dla nvm - node version manager
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -30,7 +30,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-plugins=(git archlinux colored-man-pages common-aliases docker docker-compose vagrant vagrant-prompt virtualenv zsh-interactive-cd zsh-navigation-tools zsh-autosuggestions fzf autojump)
+#plugins=(git archlinux colored-man-pages common-aliases docker docker-compose vagrant vagrant-prompt virtualenv zsh-interactive-cd zsh-navigation-tools zsh-autosuggestions fzf autojump)
+plugins=(git archlinux colored-man-pages common-aliases docker docker-compose vagrant vagrant-prompt virtualenv zsh-interactive-cd zsh-navigation-tools zsh-autosuggestions fzf autojump zsh-syntax-highlighting)
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
 
@@ -41,6 +42,7 @@ alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
 alias awesomeconfig="$EDITOR $HOME/.config/awesome/rc.lua"
 alias vimconf="$EDITOR $HOME/.config/nvim/init.vim"
 alias cfg="config-edit"
+alias vim="$EDITOR"
 
 
 ### ZNT's installer added snippet ###
@@ -64,7 +66,7 @@ if type rg &> /dev/null; then
 fi
 
 bindkey '^ ' autosuggest-accept
-
+# export FZF_DEFAULT_OPTS="-m --height 50% --border --bind=alt-j:up,alt-k:down --preview 'bat --color=always --style=numbers --line-range=:500 {}' --theme='Dracula' " fi bindkey '^ ' autosuggest-accept
 
 export GPG_TTY=$(tty)
 
@@ -82,7 +84,7 @@ alias tran="transmission-remote"
 eval $(thefuck --alias)
 complete -F __start_kubectl k
 
-export PATH="$PATH:$HOME/.local/bin:`yarn global bin`"
+export PATH="$PATH:$HOME/.local/bin:`yarn global bin`:/usr/local/go/bin:$(ruby -e 'print Gem.user_dir')/bin:/usr/bin/google-cloud-sdk/bin"
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
@@ -94,3 +96,13 @@ zstyle ':autocomplete:*' fzf-completion yes
 
 bindkey -s '^o' 'ranger .^M'
 bindkey '^g' clear-screen
+alias tor="transmission-remote"
+
+# aws completion
+complete -C '/usr/local/bin/aws_completer' aws
+
+if [ -f '/usr/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/bin/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+source "/home/habibi/.sdkman/bin/sdkman-init.sh"
+
