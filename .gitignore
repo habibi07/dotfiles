@@ -7,11 +7,8 @@
 !README.md
 
 !nvim/
-nvim/*
+# nvim/*
 
-!nvim/autoload/
-!nvim/init.vim
-!nvim/config/
 
 !rofi/
 !picom
