@@ -41,28 +41,7 @@ local on_attach = function(client, bufnr)
   require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
-local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    silent = true,
-  }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    {}
-  ),
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {}
-  ),
-  ["textDocument/definition"] = function(err, result, method, ...)
-    require("notify")("My super important message")
-    if vim.tbl_islist(result) and #result > 1 then
-      local filtered_result = filter(result, filterReactDTS)
-      return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method, ...)
-    end
-
-    vim.lsp.handlers["textDocument/definition"](err, result, method, ...)
-  end,
-}
+local handlers = {}
 
 local settings = {
   typescript = {

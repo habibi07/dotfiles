@@ -41,7 +41,6 @@ local handlers = {
   ),
   ["textDocument/definition"] = function(err, result, method, ...)
     P(result)
-    require("notify")("My super important message")
     if vim.tbl_islist(result) and #result > 1 then
       local filtered_result = filter(result, filterReactDTS)
       return baseDefinitionHandler(err, filtered_result, method, ...)
@@ -62,7 +61,6 @@ M.settings = {
 
 M.on_attach = function(client, bufnr)
   vim.lsp.inlay_hint(bufnr, true)
-  require("notify")("My super important message")
 end
 
 M.capabilities = capabilities
