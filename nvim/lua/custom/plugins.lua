@@ -94,11 +94,46 @@ local plugins = {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
-    opts = {}
-    -- opts = function()
-    --   return require("custom.configs.todo")
-    -- end
+    -- opts = {}
+    opts = function()
+      return require("custom.configs.todo")
+    end
   },
+  {
+    'ThePrimeagen/harpoon',
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = function()
+      return require("custom.configs.harpoon")
+    end
+  },
+  {
+    "folke/which-key.nvim",
+    disable = false,
+    config = function()
+      local present, wk = pcall(require, "which-key")
+      if not present then
+        return
+      end
+      wk.register(
+        {
+          -- add group
+          ["<leader>"] = {
+            h = { name = "Harpoon" },
+            t = { name = "Themes, Todo" },
+            w = { name = "Which key" },
+            g = { name = "Git" },
+            n = { name = "Noice and Notify" },
+            f = { name = "Find" },
+            l = { name = "LSP" },
+            m = { name = "Marks" },
+          }
+        }
+      )
+    end,
+    setup = function()
+      require("core.utils").load_mappings "whichkey"
+    end,
+  }
   -- {
   --   'sidebar-nvim/sidebar.nvim',
   --   opts = {open = true}
