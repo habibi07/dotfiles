@@ -8,7 +8,9 @@
 
 !nvim/
 # nvim/*
-
+nvim/coc-settings.json
+nvim/.luarc.json
+nvim/lazy-lock.json
 
 !rofi/
 !picom

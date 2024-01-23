@@ -33,7 +33,7 @@ local plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "python", "javascript" },
+    ft = { "python", "javascript", "yaml", "typescript", "css", "scss", "html", "json", "yaml", "markdown", "graphql", "md", "txt"},
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -133,6 +133,68 @@ local plugins = {
     setup = function()
       require("core.utils").load_mappings "whichkey"
     end,
+  },
+    {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    ft = 'norg',
+    cmd = 'Neorg',
+    priority = 30,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {}, -- Loads default behaviour
+          ["core.concealer"] = {}, -- Adds pretty icons to your documents
+          ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = "~/workspaces",
+              },
+            },
+          },
+        },
+      }
+    end,
+  },
+  {
+    "vimwiki/vimwiki",
+    event = 'VimEnter',
+    init = function ()
+      vim.g.vimwiki_hl_headers = 1
+      vim.g.vimwiki_list = {
+        {
+          path = "~/vikis/vikis/",
+          template_path = "~/vikis/templates/",
+          template_default = "viki_template",
+          path_html = "~/vikis/vikis_html",
+          nested_syntaxes = {
+            python = "python",
+            javascript = "javascript",
+            bash = "bash",
+            sh = "sh",
+            go = "go",
+            node = "javascript"
+          },
+          syntax = "markdown",
+          ext = "md",
+          custom_wiki2html = "vimwiki_markdown",
+          html_filename_parameterization = 1,
+          auto_toc = 1,
+          auto_tags = 1,
+          template_ext = ".html"
+        }
+      }
+    end
+  },
+  {
+	  "mg979/vim-visual-multi",
+	  branch = "master",
+	  init = function()
+	  	vim.g.VM_maps = { 
+                      ["Find Under"] = "<C-d>"
+                  }
+	  end,
   }
   -- {
   --   'sidebar-nvim/sidebar.nvim',

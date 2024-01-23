@@ -1,3 +1,11 @@
 #!/usr/bin/python
 
-import os; import random; os.system('set_wallpaper ' + str(random.choice(os.listdir('/home/habibi/.config/wallpapers'))))
+import os
+import random
+import sys
+
+WALLPAPERS_DIR = "/home/habibi/.config/wallpapers"
+
+os.system("set_wallpaper " + str(random.choice(os.listdir(WALLPAPERS_DIR))))
+
+print(sys.argv)

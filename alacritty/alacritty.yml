@@ -4,45 +4,45 @@ font:
     #family: VictorMono Nerd Font Mono
     #family: DejaVu Sans Mono
     # family: Fantasque Sans Mono
-    family: VictorMono Nerd Font
+    family: JetBrainsMono Nerd Font
 
     #family: VictorMono Nerd Font
     style: Medium
 
   bold:
     # family: FantasqueSansMono Nerd Font
-    family: VictorMono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Bold
 
   italic:
     # family: FantasqueSansMono Nerd Font
-    family: VictorMono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Italic
 
   bold_italic:
     # family: FantasqueSansMono Nerd Font
-    family: VictorMono Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Bold Italic
   size: 9
 
 #https://github.com/alacritty/alacritty/blob/master/alacritty.yml#L735
-key_bindings:
-  - { key: V, mods: Alt, action: Paste }
-  - { key: C, mods: Alt, action: Copy }
-    #- { key: F,        mods: Control, chars: "fzf\n"                     }
-    #  - { key: Q,        mods: Alt, action: Redraw }
-    #  - { key: W,        mods: Command, action: Quit                         }
-    #  - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-    #  - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
-    #  - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-    #  - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
-    #  - { key: Key0,     mods: Command, action: ResetFontSize                }
-    #  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
-    #  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
-    #  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
-    #  - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
-    #  - { key: PageUp,                  chars: "\x1b[5~"                     }
-    #  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
+# key_bindings:
+#   - { key: V, mods: Alt, action: Paste }
+#   - { key: C, mods: Alt, action: Copy }
+#- { key: F,        mods: Control, chars: "fzf\n"                     }
+#  - { key: Q,        mods: Alt, action: Redraw }
+#  - { key: W,        mods: Command, action: Quit                         }
+#  - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
+#  - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
+#  - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
+#  - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
+#  - { key: Key0,     mods: Command, action: ResetFontSize                }
+#  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
+#  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
+#  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
+#  - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
+#  - { key: PageUp,                  chars: "\x1b[5~"                     }
+#  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
 # TokyoNight Alacritty Colors
 colors:
   # Default colors
@@ -75,3 +75,10 @@ colors:
   indexed_colors:
     - { index: 16, color: "0xff9e64" }
     - { index: 17, color: "0xdb4b4b" }
+
+mouse:
+  hide_when_typing: true
+window.opacity: 1.0
+theme: Catppuccin
+shell:
+  program: /bin/zsh
