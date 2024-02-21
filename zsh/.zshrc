@@ -43,6 +43,7 @@ alias awesomeconfig="$EDITOR $HOME/.config/awesome/rc.lua"
 alias vimconf="$EDITOR $HOME/.config/nvim/init.vim"
 alias cfg="config-edit"
 alias vim="$EDITOR"
+alias copy='xclip -sel clip'
 
 
 ### ZNT's installer added snippet ###
@@ -64,6 +65,8 @@ zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 #  export FZF_DEFAULT_OPTS="-m --height 50% --border --bind=alt-j:up,alt-k:down --no-preview"
 #  # export FZF_DEFAULT_OPTS="-m --height 50% --border --bind=alt-j:up,alt-k:down --preview 'bat --color=always --style=numbers --line-range=:500 {}' --theme='Dracula' "
 #fi
+
+export FZF_DEFAULT_OPTS='--border --margin=1 --padding=1'
 
 bindkey '^ ' autosuggest-accept
 # export FZF_DEFAULT_OPTS="-m --height 50% --border --bind=alt-j:up,alt-k:down --preview 'bat --color=always --style=numbers --line-range=:500 {}' --theme='Dracula' " fi bindkey '^ ' autosuggest-accept
@@ -141,3 +144,4 @@ zle -N fzf-man-widget
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+source ~/.config/zsh/docker-fzf

@@ -16,20 +16,20 @@ M.general = {
 M.telescope = {
   n = {
     ["<leader>fk"] = { "<cmd> Telescope keymaps <CR>", "Find keymaps" },
-  }
+  },
 }
 
 M.todo = {
   n = {
     ["<leader>tt"] = { "<cmd> TodoTelescope <CR>", "Todo Telescope" },
-  }
+  },
 }
 
 M.notice = {
   n = {
     ["<leader>nn"] = { "<cmd> Telescope noice <CR>", "Telescope noice" },
     ["<leader>nt"] = { "<cmd> Telescope notify <CR>", "Telescope notify" },
-  }
+  },
 }
 
 M.lsp = {
@@ -60,9 +60,7 @@ M.lsp = {
       end,
       "LSP code action",
     },
-
-
-  }
+  },
 }
 
 M.whichkey = {
@@ -88,20 +86,21 @@ M.whichkey = {
         local conf = require("telescope.config").values
         local colors = function(opts)
           opts = opts or {}
-          pickers.new(opts, {
-            prompt_title = "Workspaces",
-            finder = finders.new_table {
-              results = vim.lsp.buf.list_workspace_folders()
-            },
-            sorter = conf.generic_sorter(opts),
-          }):find()
+          pickers
+            .new(opts, {
+              prompt_title = "Workspaces",
+              finder = finders.new_table {
+                results = vim.lsp.buf.list_workspace_folders(),
+              },
+              sorter = conf.generic_sorter(opts),
+            })
+            :find()
         end
         colors()
-        -- print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
       "List workspace folders",
     },
-  }
+  },
 }
 
 M.harpoon = {
@@ -110,40 +109,74 @@ M.harpoon = {
       function()
         require("harpoon.mark").add_file()
       end,
-      "Harpoon add current buffer"
+      "Harpoon add current buffer",
     },
     ["<leader>hh"] = {
       function()
         require("harpoon.ui").toggle_quick_menu()
       end,
-      "Harpoon quick menu"
+      "Harpoon quick menu",
     },
     ["<A-j>"] = {
       function()
         require("harpoon.ui").nav_next()
       end,
-      "Harpoon quick menu"
+      "Harpoon quick menu",
     },
     ["<A-k>"] = {
       function()
         require("harpoon.ui").nav_prev()
       end,
-      "Harpoon quick menu"
+      "Harpoon quick menu",
     },
-  }
+  },
 }
 M.trouble = {
   n = {
-    ["<leader>xx"] = {function() require("trouble").open() end, "Toggle trouble"},
-    ["<leader>xw"] = {function() require("trouble").open("workspace_diagnostics") end, "Workspace diag."},
-    ["<leader>xd"] = {function() require("trouble").open("document_diagnostics") end, "Document diag."},
-    ["<leader>xq"] = {function() require("trouble").open("quickfix") end, "Quickfix"},
-    ["<leader>xl"] = {function() require("trouble").open("loclist") end, "Trouble loc list"},
-    ["<leader>xn"] = {function() require("trouble").next({skip_groups = true, jump = true}) end, "Trouble next"},
-    ["<leader>xp"] = {function() require("trouble").previous({skip_groups = true, jump = true}) end, "Trouble next"},
-  }
+    ["<leader>xx"] = {
+      function()
+        require("trouble").open()
+      end,
+      "Toggle trouble",
+    },
+    ["<leader>xw"] = {
+      function()
+        require("trouble").open "workspace_diagnostics"
+      end,
+      "Workspace diag.",
+    },
+    ["<leader>xd"] = {
+      function()
+        require("trouble").open "document_diagnostics"
+      end,
+      "Document diag.",
+    },
+    ["<leader>xq"] = {
+      function()
+        require("trouble").open "quickfix"
+      end,
+      "Quickfix",
+    },
+    ["<leader>xl"] = {
+      function()
+        require("trouble").open "loclist"
+      end,
+      "Trouble loc list",
+    },
+    ["<leader>xn"] = {
+      function()
+        require("trouble").next { skip_groups = true, jump = true }
+      end,
+      "Trouble next",
+    },
+    ["<leader>xp"] = {
+      function()
+        require("trouble").previous { skip_groups = true, jump = true }
+      end,
+      "Trouble next",
+    },
+  },
 }
-
 
 M.disabled = {
   n = {

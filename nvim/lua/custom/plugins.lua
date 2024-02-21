@@ -1,13 +1,15 @@
 local cmp = require "cmp"
 
--- TODO: skonfigurowac ThePrimeagen/harpoon
--- FIX: sprawdzic co jest nie tak z trouble
--- TODO: konfiguracja skrutów
--- TODO: https://freshman.tech/vim-quickfix-and-location-list/
--- TODO: https://github.com/phaazon/hop.nvim
--- TODO: sidebar https://github.com/sidebar-nvim/sidebar.nvim
--- INFO: https://github.com/ecosse3/nvim/blob/master/lua/plugins/noice.lua
--- INFO: https://github.com/ecosse3/nvim/blob/master/lua/plugins/dressing.lua
+--[[
+TODO: skonfigurowac ThePrimeagen/harpoon
+FIX: sprawdzic co jest nie tak z trouble
+TODO: konfiguracja skrutów
+TODO: https://freshman.tech/vim-quickfix-and-location-list/
+TODO: https://github.com/phaazon/hop.nvim
+TODO: sidebar https://github.com/sidebar-nvim/sidebar.nvim
+INFO: https://github.com/ecosse3/nvim/blob/master/lua/plugins/noice.lua
+INFO: https://github.com/ecosse3/nvim/blob/master/lua/plugins/dressing.lua
+--]]
 
 local plugins = {
   {
@@ -16,13 +18,14 @@ local plugins = {
       ensure_installed = {
         "black",
         "ruff",
-        "prettier",
+        "prettierd",
         "stylua",
         "python-lsp-server",
-        "lua-language-server",
-        "typescript-language-server"
+        "typescript-language-server",
+        "tailwindcss-language-server",
+        "eslint-lsp",
       },
-    }
+    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -32,8 +35,10 @@ local plugins = {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = { "python", "javascript", "yaml", "typescript", "css", "scss", "html", "json", "yaml", "markdown", "graphql", "md", "txt"},
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    -- ft = { "python", "javascript", "yaml", "typescript", "css", "scss", "html", "json", "yaml", "markdown", "graphql", "md", "txt"},
+    -- ft = { "python", "yaml", "json", "yaml", "markdown", "graphql", "md"},
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -41,8 +46,8 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      return require("custom.configs.treesitter")
-    end
+      return require "custom.configs.treesitter"
+    end,
   },
   -- {
   --   "pmizio/typescript-tools.nvim",
@@ -62,18 +67,19 @@ local plugins = {
     end,
   },
   {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
+    "glepnir/dashboard-nvim",
+    event = "VimEnter",
     opts = function()
       return require "custom.configs.dashboard"
     end,
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
   },
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
+    lazy = false,
+    -- event = "VeryLazy",
     opts = function()
-      return require("custom.configs.notice")
+      return require "custom.configs.notice"
     end,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -82,7 +88,7 @@ local plugins = {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-    }
+    },
   },
   {
     "folke/trouble.nvim",
@@ -96,15 +102,15 @@ local plugins = {
     event = "VeryLazy",
     -- opts = {}
     opts = function()
-      return require("custom.configs.todo")
-    end
+      return require "custom.configs.todo"
+    end,
   },
   {
-    'ThePrimeagen/harpoon',
+    "ThePrimeagen/harpoon",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = function()
-      return require("custom.configs.harpoon")
-    end
+      return require "custom.configs.harpoon"
+    end,
   },
   {
     "folke/which-key.nvim",
@@ -114,31 +120,29 @@ local plugins = {
       if not present then
         return
       end
-      wk.register(
-        {
-          -- add group
-          ["<leader>"] = {
-            h = { name = "Harpoon" },
-            t = { name = "Themes, Todo" },
-            w = { name = "Which key" },
-            g = { name = "Git" },
-            n = { name = "Noice and Notify" },
-            f = { name = "Find" },
-            l = { name = "LSP" },
-            m = { name = "Marks" },
-          }
-        }
-      )
+      wk.register {
+        -- add group
+        ["<leader>"] = {
+          h = { name = "Harpoon" },
+          t = { name = "Themes, Todo" },
+          w = { name = "Which key" },
+          g = { name = "Git" },
+          n = { name = "Noice and Notify" },
+          f = { name = "Find" },
+          l = { name = "LSP" },
+          m = { name = "Marks" },
+        },
+      }
     end,
     setup = function()
       require("core.utils").load_mappings "whichkey"
     end,
   },
-    {
+  {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
-    ft = 'norg',
-    cmd = 'Neorg',
+    ft = "norg",
+    cmd = "Neorg",
     priority = 30,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -159,8 +163,8 @@ local plugins = {
   },
   {
     "vimwiki/vimwiki",
-    event = 'VimEnter',
-    init = function ()
+    event = "VimEnter",
+    init = function()
       vim.g.vimwiki_hl_headers = 1
       vim.g.vimwiki_list = {
         {
@@ -174,7 +178,7 @@ local plugins = {
             bash = "bash",
             sh = "sh",
             go = "go",
-            node = "javascript"
+            node = "javascript",
           },
           syntax = "markdown",
           ext = "md",
@@ -182,20 +186,64 @@ local plugins = {
           html_filename_parameterization = 1,
           auto_toc = 1,
           auto_tags = 1,
-          template_ext = ".html"
-        }
+          template_ext = ".html",
+        },
       }
-    end
+    end,
   },
   {
-	  "mg979/vim-visual-multi",
-	  branch = "master",
-	  init = function()
-	  	vim.g.VM_maps = { 
-                      ["Find Under"] = "<C-d>"
-                  }
-	  end,
-  }
+    "mg979/vim-visual-multi",
+    branch = "master",
+    init = function()
+      vim.g.VM_maps = {
+        ["Find Under"] = "<C-d>",
+      }
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html",
+    },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
+    "jose-elias-alvarez/nvim-lsp-ts-utils",
+    event = "VeryLazy",
+    lazy = false,
+  },
+  {
+    "hrsh7th/cmp-cmdline",
+    lazy = false,
+    config = function()
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
+    end,
+  },
+
   -- {
   --   'sidebar-nvim/sidebar.nvim',
   --   opts = {open = true}
