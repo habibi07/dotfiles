@@ -1,5 +1,7 @@
 local options = {
   ensure_installed = {
+    "cmake",
+    "c",
     "lua",
     "javascript",
     "python",
