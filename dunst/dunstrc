@@ -1,10 +1,8 @@
-
-
 [global]
     monitor = 0
     follow = mouse
     width = 450
-    offset = 20x80
+    offset = 20x600
     progress_bar = true
     progress_bar_height = 10
     progress_bar_frame_width = 1
@@ -22,6 +20,7 @@
     sort = yes
     idle_threshold = 120
     font = JetBrains Mono Nerd Font Medium 10
+    font = Fantasque Sans Mono 12
     line_height = 0
     markup = full
     format = "<span weight='bold'>%s</span>\n%b"
@@ -54,13 +53,14 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#11121DCC"
+    background = "#11121D"
     foreground = "#787c99"
     timeout = 10
 
 [urgency_normal]
-    background = "#11121DCC"
-    foreground = "#787c99"
+    background = "#232323"
+    foreground = "#a8a8a8"
+    icon = /usr/share/icons/Paper/24x24/status/
     timeout = 10
 
 [urgency_critical]
@@ -69,3 +69,4 @@
     frame_color = "#EE6D85"
     timeout = -1
     format = "<b>%s</b>\n%b"
+    icon = /usr/share/icons/Paper/24x24/status/dialog-warning.png
