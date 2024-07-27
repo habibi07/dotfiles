@@ -350,6 +350,13 @@ bindkey -M vicmd '^R' fzf-history-widget
 # bindkey '^[[B' down-line-or-search
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
+
+
+# -- NVM ----------------------------------------------------------------
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # -- FINAL ---------------------------------------------------------------------
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
@@ -357,3 +364,5 @@ bindkey "^N" history-beginning-search-forward
 
 . ~/.cache/wal/colors.sh
 xrdb -merge ~/.cache/wal/colors.Xresources
+
+
