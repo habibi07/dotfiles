@@ -7,4 +7,4 @@
 * ranger
 
 
-![preview screenshot](./files/screenshot.png)
+![preview screenshot](./.config/files/screenshot.png)
