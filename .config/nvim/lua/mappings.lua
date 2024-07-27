@@ -65,6 +65,14 @@ wk.register {
     n = { ":lua require('harpoon.ui').nav_next()<cr>", "Next" },
     p = { ":lua require('harpoon.ui').nav_prev()<cr>", "Next" },
   },
+  ["<leader>m"] = {
+    name = "mode",
+    z = { ":lua require('zen-mode').toggle()<cr>", "Zenmode" },
+  },
+  ["<leader>s"] = {
+    name = "show",
+    o = { ":SymbolsOutline<cr>", "Show symbols" },
+  }
 }
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

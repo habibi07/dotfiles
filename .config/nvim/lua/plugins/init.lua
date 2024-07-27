@@ -141,22 +141,6 @@ return {
     end,
   },
   {
-    "LunarVim/breadcrumbs.nvim",
-    -- lazy = false,
-    dependencies = {
-      { "SmiteshP/nvim-navic" },
-    },
-    init = function()
-      require("nvim-navic").setup {
-        lsp = {
-          auto_attach = true,
-        },
-      }
-
-      require("breadcrumbs").setup()
-    end,
-  },
-  {
     "vimwiki/vimwiki",
     event = "VimEnter",
     init = function()
@@ -185,6 +169,44 @@ return {
         },
       }
     end,
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    lazy = false,
+    init = function()
+      require("symbols-outline").setup {
+        auto_preview = false,
+        width = 15,
+        auto_close = false,
+        show_numbers = false,
+        show_relative_numbers = false,
+        show_symbol_details = true,
+        preview_bg_highlight = "Pmenu",
+        autofold_depth = nil,
+        auto_unfold_hover = true,
+        fold_markers = { "", "" },
+        wrap = false,
+      }
+      vim.api.nvim_command "SymbolsOutline"
+    end,
+  },
+  {
+    "Bekaboo/dropbar.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+    },
+  },
+  {
+    "folke/zen-mode.nvim",
+    -- opts = {
+    --   plugins = {
+    --     alacritty = {
+    --       enabled = true,
+    --       font = "14", -- font size
+    --     },
+    --   },
+    -- },
   },
   -- {
   --   "chipsenkbeil/distant.nvim",
