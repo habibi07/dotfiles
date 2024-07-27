@@ -14,7 +14,8 @@ nomap("n", "<leader>h")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
-map("n", "<leader>fm", require("conform").format, { desc = "format code" })
+-- map("n", "<leader>fm", require("conform").format, { desc = "format code" })
+map("n", "<leader>fm", vim.lsp.buf.format, { desc = "format code" })
 map("n", "<leader>ft", ":TodoTelescope<cr>", { desc = "Todo telescope list" })
 
 map("n", "<leader>xx", function()
@@ -40,6 +41,8 @@ map("n", "<leader>fk", ":Telescope keymaps<cr>", { desc = "Find keymap" })
 map("n", "<leader>j", ":cnext<cr>zz", { desc = "Quickfix next" })
 map("n", "<leader>k", ":cprev<cr>zz", { desc = "Quickfix previous" })
 
+map("i", "<C-o>", "<ESC> o", { desc = "Go to next line" })
+
 telescope.setup {
   defaults = {
     mappings = {
@@ -63,4 +66,8 @@ wk.register {
     p = { ":lua require('harpoon.ui').nav_prev()<cr>", "Next" },
   },
 }
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+
+-- map("n", "<leader>as", ':lua require("persistence").save()<cr>', { desc = "Save session" })
+-- map("n", "<leader>al", ':lua require("persistence").load({ last = true })<cr>', { desc = "Restore session" })

@@ -5,7 +5,7 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 -- local servers = { "html", "cssls", "pylsp" }
-local server = {"luals"}
+local servers = { "lua_ls", "tsserver", "ruff", "pyright" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -13,12 +13,16 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
+    settings = {
+      Lua = {
+        completion = {
+          showWord = "Disable",
+          callSnippet = "Both",
+        },
+        hint = {
+          enable = true,
+        },
+      },
+    },
   }
 end
-
--- typescript
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}

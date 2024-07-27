@@ -1,11 +1,11 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   -- event = 'BufWritePre', -- uncomment for format on save
+  --   config = function()
+  --     require "configs.conform"
+  --   end,
+  -- },
 
   {
     "neovim/nvim-lspconfig",
@@ -16,21 +16,21 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {}
-    -- config = function() 
-    --   require("mason").setup()
-    -- end
-    -- opts = function()
-    --   return require "custom.mason"
-    -- end,
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function() 
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ruff"}
-      })
-    end
+    opts = function()
+      return require "custom.mason"
+    end,
+    dependencies = {
+      {
+        "williamboman/mason-lspconfig.nvim",
+        event = "VeryLazy",
+        config = function()
+          require("mason-lspconfig").setup {
+            ensure_installed = { "lua_ls", "tsserver", "ruff", "pyright" },
+            automatic_installation = true,
+          }
+        end,
+      },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -113,7 +113,6 @@ return {
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
-    enable = false,
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
@@ -121,4 +120,77 @@ return {
       return require "custom.none-ls"
     end,
   },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").setup {
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {},
+          },
+        },
+      }
+      require("telescope").load_extension "ui-select"
+    end,
+  },
+  {
+    "RRethy/vim-illuminate",
+    init = function()
+      require("illuminate").configure {}
+    end,
+  },
+  {
+    "LunarVim/breadcrumbs.nvim",
+    -- lazy = false,
+    dependencies = {
+      { "SmiteshP/nvim-navic" },
+    },
+    init = function()
+      require("nvim-navic").setup {
+        lsp = {
+          auto_attach = true,
+        },
+      }
+
+      require("breadcrumbs").setup()
+    end,
+  },
+{
+    "vimwiki/vimwiki",
+    event = "VimEnter",
+    init = function()
+      vim.g.vimwiki_hl_headers = 1
+      vim.g.vimwiki_list = {
+        {
+          path = "~/vikis/vikis/",
+          template_path = "~/vikis/templates/",
+          template_default = "viki_template",
+          path_html = "~/vikis/vikis_html",
+          nested_syntaxes = {
+            python = "python",
+            javascript = "javascript",
+            bash = "bash",
+            sh = "sh",
+            go = "go",
+            node = "javascript",
+          },
+          syntax = "markdown",
+          ext = "md",
+          custom_wiki2html = "vimwiki_markdown",
+          html_filename_parameterization = 1,
+          auto_toc = 1,
+          auto_tags = 1,
+          template_ext = ".html",
+        },
+      }
+    end,
+  },
+  -- {
+  --   "folke/persistence.nvim",
+  --   event = "BufReadPre", -- this will only start session saving when an actual file was opened
+  --   opts = {
+  --     -- add any custom options here
+  --   },
+  -- },
 }

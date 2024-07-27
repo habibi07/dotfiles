@@ -27,6 +27,12 @@ local M = {
         key = "d",
       },
       {
+        desc = " Mason install",
+        group = "Label",
+        action = "MasonInstallAll",
+        key = "m",
+      },
+      {
         desc = " CheatSheet",
         group = "Label",
         action = "NvCheatsheet",
