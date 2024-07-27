@@ -2,7 +2,7 @@ import os
 import subprocess
 
 from libqtile import bar, layout, qtile, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal, send_notification
 from qtile_extras import widget
@@ -133,13 +133,13 @@ keys = [
             "scrot -s '%Y-%m-%d_$wx$h.png' -e 'mv $f /tmp/shot.png && xclip -selection clipboard -t image/png -i /tmp/shot.png && notify-send \"screenshot copied to clipboard\"'"
         ),
     ),
-    Key(
-        [mod, "shift"],
-        "f",
-        lazy.spawn(
-            f"scrot -s '%Y-%m-%d_$wx$h.png' -M {qtile.current_screen.index} -e 'mv $f /tmp/shot.png && xclip -selection clipboard -t image/png -i /tmp/shot.png && notify-send \"screenshot copied to clipboard\"'"
-        ),
-    ),
+    # Key(
+    #     [mod, "shift"],
+    #     "f",
+    #     lazy.spawn(
+    #         f"scrot -s '%Y-%m-%d_$wx$h.png' -M {qtile.current_screen.index} -e 'mv $f /tmp/shot.png && xclip -selection clipboard -t image/png -i /tmp/shot.png && notify-send \"screenshot copied to clipboard\"'"
+    #     ),
+    # ),
     Key(
         [mod],
         "t",
@@ -164,7 +164,10 @@ keys = [
     Key([mod, "shift"], "o", move_to_screen, desc="Move window to other screen"),
     Key([mod], "o", go_to_screen, desc="Go to screen"),
     Key([mod], "c", go_to_repo, desc="Go to repo"),
-    Key([mod, "shift"], "q", lazy.function(show_power_menu))
+    Key([mod, "shift"], "q", lazy.function(show_power_menu)),
+    KeyChord([mod], "a", [
+        Key([mod], "t", lazy.spawn("/home/habibi/.config/bin/add_todo"))
+    ])
 ]
 
 
