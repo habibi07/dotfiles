@@ -20,7 +20,7 @@
     sort = yes
     idle_threshold = 120
     font = JetBrains Mono Nerd Font Medium 10
-    font = Fantasque Sans Mono 12
+    #font = Fantasque Sans Mono 12
     line_height = 0
     markup = full
     format = "<span weight='bold'>%s</span>\n%b"
@@ -36,7 +36,7 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 48
-    icon_path = /home/eric/.local/share/icons/dunst
+    icon_theme = "Adwaita, breeze"
     sticky_history = yes
     history_length = 20
     always_run_script = true
@@ -52,16 +52,16 @@
 [experimental]
     per_monitor_dpi = false
 
-[urgency_low]
-    background = "#11121D"
-    foreground = "#787c99"
-    timeout = 10
-
-[urgency_normal]
-    background = "#232323"
-    foreground = "#a8a8a8"
-    icon = /usr/share/icons/Paper/24x24/status/
-    timeout = 10
+#[urgency_low]
+#    background = "#11121D"
+#    foreground = "#787c99"
+#    timeout = 10
+#
+#[urgency_normal]
+#    background = "#232323"
+#    foreground = "#a8a8a8"
+#    icon = /usr/share/icons/Paper/24x24/status/
+#    timeout = 10
 
 [urgency_critical]
     background = "#11121DCC"
@@ -70,3 +70,13 @@
     timeout = -1
     format = "<b>%s</b>\n%b"
     icon = /usr/share/icons/Paper/24x24/status/dialog-warning.png
+
+[Brave]
+    appname = Brave
+    script = "/home/habibi/chromium_notify.sh"
+
+[myaction]
+    #appname = Vivaldi
+    #summary = Download Complete
+    summary = "*Test*"
+    script = /home/habibi/myaction.sh
