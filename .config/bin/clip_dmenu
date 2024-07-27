@@ -1,0 +1,3 @@
+#!/bin/bash
+
+greenclip print | grep . | dmenu -i -h 50  -fn "FantasqueSansMono Nerd Font:style=Normal:pixelsize=16" -dim .6 -l 15 -p clipboard | xargs -r -d'\n' -I '{}' greenclip print '{}'

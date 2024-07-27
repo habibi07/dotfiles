@@ -1,0 +1,6 @@
+#!/bin/bash
+
+todo=`rofi -dmenu -mesg 'Dodawanie zadania to listy TODO' -p '' -theme-str "entry { placeholder: \"Wprowadź treść zadania\"; }"`
+echo "- $todo" >> ~/.config/TODO
+
+cat ~/.config/TODO

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+REPOS_PATH=/home/habibi/data/repos/
+
+cd $REPOS_PATH
+
+selection=`ls -d */ | sed 's:/*$::' | rofi -dmenu`
+alacritty --working-directory $REPOS_PATH$selection

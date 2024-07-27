@@ -1,0 +1,5 @@
+#!/bin/bash
+
+setxkbmap pl
+setxkbmap -option caps:swapescape
+xset r rate 150 200

@@ -1,0 +1,37 @@
+#!/usr/bin/python
+
+import pulsectl
+
+sinks = []
+sources = []
+
+def parse_device(device, default_device_name):
+    print(device.name)
+    s = {}
+    s['id'] = device.index
+    s['is_default'] = device.name == default_device_name
+    s['properties'] = {}
+    s['ports']  = {}
+
+    if device.port_active:
+        s['active_port'] = device.port_active.name
+
+    for k,v in device.proplist.items():
+        kname = k.replace('.', '_').replace('-', '_').replace(':','_')
+        s['properties'][kname] = v
+
+    for p in device.port_list:
+        s['ports'][p.name] = p.description
+    return s
+
+with pulsectl.Pulse('volume-increaser') as pulse:
+    for sink in pulse.sink_list():
+        sinks.append(parse_device(sink, pulse.server_info().default_sink_name))
+    for source in pulse.source_list():
+        sources.append(parse_device(source, pulse.server_info().default_source_name))
+
+devices = {
+    'sinks': sinks,
+    'sources': sources
+}
+print(devices)

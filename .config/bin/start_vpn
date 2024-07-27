@@ -1,0 +1,6 @@
+#!/bin/sh
+VPNS_DIR=$HOME/data/vpns
+CHOSEN=$(ls $VPNS_DIR/* -d | xargs -n 1 basename | rofi -dmenu)
+
+cd $VPNS_DIR/$CHOSEN
+./connect.sh

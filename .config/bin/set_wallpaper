@@ -1,0 +1,17 @@
+#!/bin/sh
+backgrounds_dir=/home/habibi/.config/wallpapers
+bg_file=/home/habibi/.config/bg_file
+
+if [ -z "$1" ]
+then
+    file=`cat $bg_file`
+    fpath="$backgrounds_dir/$file"
+    feh --no-fehbg --bg-fill $fpath
+    wal -i $fpath
+    python ~/.config/bin/wal_to_alacritty.py
+    qtile cmd-obj -o cmd -f reload_config
+else
+    # sed "s/^image=.*/image=$1/" -i set_wallpaper
+    echo "$1" > $bg_file
+    /home/habibi/.config/bin/set_wallpaper
+fi

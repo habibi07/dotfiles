@@ -1,0 +1,4 @@
+#!/bin/bash
+
+picom --animations -b
+systemctl --user start dunst

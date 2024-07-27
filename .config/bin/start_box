@@ -1,0 +1,3 @@
+#!/bin/bash
+box=`VBoxManage list vms | cut -d '"' -f 2 | dmenu -i -h 50 -w 600 -x 600 -y 300 -fn "FantasqueSansMono Nerd Font:style=Normal:pixelsize=20" -l 8 -dim .6`
+vboxmanage startvm $box

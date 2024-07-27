@@ -1,0 +1,7 @@
+#!/bin/bash
+
+todo=`rofi -dmenu -mesg 'Usuwanie zadania z listy todo' -p '' -theme-str "entry { placeholder: \"\"; }" -input ~/.config/TODO`
+sed -i "s/$todo//g" ~/.config/TODO
+sed -i '/^$/d' ~/.config/TODO # removes blank lines
+
+cat ~/.config/TODO
