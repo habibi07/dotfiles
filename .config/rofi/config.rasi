@@ -1,0 +1,10 @@
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/usr/share/rofi/themes/solarized.rasi"
+//@theme "/usr/share/rofi/themes/android_notification.rasi"
+//@theme "/home/habibi/.local/share/rofi/themes/windows11-list-dark.rasi"
+//@theme "/home/habibi/.local/share/rofi/themes/squared-nord.rasi"
+@theme "/home/habibi/.local/share/rofi/themes/spotlight.rasi"
+
+configuration {
+  modi: "window,run,ssh,drun,filebrowser,emoji,combi,keys";
+}
