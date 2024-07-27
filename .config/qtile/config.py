@@ -134,6 +134,13 @@ keys = [
         ),
     ),
     Key(
+        [mod, "shift"],
+        "f",
+        lazy.spawn(
+            f"scrot -s '%Y-%m-%d_$wx$h.png' -M {qtile.current_screen.index} -e 'mv $f /tmp/shot.png && xclip -selection clipboard -t image/png -i /tmp/shot.png && notify-send \"screenshot copied to clipboard\"'"
+        ),
+    ),
+    Key(
         [mod],
         "t",
         lazy.window.toggle_floating(),
