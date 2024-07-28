@@ -26,6 +26,7 @@ o.shiftwidth = 2
 o.tabstop = 2
 o.smartindent = true -- autoindent new lines
 o.shell = 'zsh'
+o.title=true
 
 augroup("MyAutoCmdGroup", { clear = true })
 autocmd("TextYankPost", {
