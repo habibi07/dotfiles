@@ -7,7 +7,7 @@ THEME_MODE = 'normal'
 SCREENS_CONFIG_FILE = '/home/habibi/.config/qtile/screens.json'
 BROWSER = 'brave'
 EDITOR = 'nvim'
-MARGIN_DEFAULT = 8
+MARGIN_DEFAULT = 20
 MARGIN_STEP = 5
 BAR_SIZE = 32
 
