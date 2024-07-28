@@ -132,6 +132,7 @@ alias ls="ls --color=auto"
 
 export EDITOR="nvim"
 export TERM="xterm-256color"
+# export TERM='alacritty'
 export COLORTERM="truecolor"
 export BROWSER="brave"
 export VAGRANT_HOME="$HOME/data/vagrant.d" 
@@ -364,5 +365,3 @@ export NVM_DIR="$HOME/.config/nvm"
 
 . ~/.cache/wal/colors.sh
 xrdb -merge ~/.cache/wal/colors.Xresources
-
-
