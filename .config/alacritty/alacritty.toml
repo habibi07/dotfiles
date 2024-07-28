@@ -35,6 +35,9 @@ import = [
 # yellow = "0xe0af68"
 #
 
+[window]
+dynamic_title = true
+
 [font]
 size = 9
 
