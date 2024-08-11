@@ -48,7 +48,7 @@ zinit wait lucid light-mode for \
   https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/autojump/autojump.plugin.zsh \
   MichaelAquilina/zsh-you-should-use \
   MichaelAquilina/zsh-auto-notify \
-  https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/dirhistory/dirhistory.plugin.zsh
+  Aloxaf/fzf-tab
   # chitoku-k/fzf-zsh-completions
   # MichaelAquilina/zsh-autoswitch-virtualenv \
 
@@ -90,6 +90,23 @@ expand-or-complete-with-dots() {
   zle redisplay
 }
 zle -N expand-or-complete-with-dots
+
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+
 bindkey "^I" expand-or-complete-with-dots
 zmodload zsh/complist
 LISTMAX=9999
@@ -139,9 +156,11 @@ export VAGRANT_HOME="$HOME/data/vagrant.d"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export PATH="$PATH:$HOME/.local/bin:`yarn global bin`:/usr/local/go/bin:$(ruby -e 'print Gem.user_dir')/bin:/usr/bin/google-cloud-sdk/bin:$HOME/go/bin:$HOME/.config/bin"
 
-# you should use 
+# -- YOU SHOULD USE ----------------------------------------------------------------------
 export YSU_MODE=ALL
 
+# -- AUTO NOTIFY ----------------------------------------------------------------------
+export AUTO_NOTIFY_IGNORE=("man" "sleep", "cfg")
 
 # -- LESS ----------------------------------------------------------------------
 
@@ -351,6 +370,8 @@ bindkey -M vicmd '^R' fzf-history-widget
 # bindkey '^[[B' down-line-or-search
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
+# bindkey "^P" history-substring-search-down
+# bindkey "^N" history-substring-search-up
 
 
 # -- NVM ----------------------------------------------------------------
@@ -365,3 +386,4 @@ export NVM_DIR="$HOME/.config/nvm"
 
 . ~/.cache/wal/colors.sh
 xrdb -merge ~/.cache/wal/colors.Xresources
+
