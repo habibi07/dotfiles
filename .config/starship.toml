@@ -46,7 +46,7 @@ $battery\
 $time"""
 
 # Sets user-defined palette
-palette = "catppuccin_macchiato"
+palette = "catppuccin_latte"
 
 # palette tables should be last in the config ⚓️
 [palettes.catppuccin_macchiato]
@@ -171,6 +171,12 @@ success_symbol = "[❯](bold blue)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[:](bold green)"
 
+[custom]
+disabled = true
+
+[crystal]
+disabled = true
+
 [directory]
 format = '[$read_only]($read_only_style)[$path]($style) '
 read_only_style = 'bold red'
@@ -229,9 +235,13 @@ disabled = false
 format = '[\[$symbol($version)\]]($style)'
 version_format = '${major}.${minor}'
 
+[os]
+disabled = true
+
 [python]
 format = '[\[${symbol}${pyenv_prefix}(${version})(\($virtualenv\) )\] ]($style)'
 version_format = '${major}.${minor}'
+style = 'bold lavender'
 symbol = 'py '
 
 [status]
@@ -239,3 +249,4 @@ disabled = false
 
 [time]
 disabled = false
+format = ' [$time]($style) '
